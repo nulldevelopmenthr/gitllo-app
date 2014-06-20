@@ -1,0 +1,3 @@
+null_dev_base_homepage:
+    pattern:  /
+    defaults: { _controller: NullDevBaseBundle:MainPage:index }
