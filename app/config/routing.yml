@@ -1,3 +1,7 @@
+null_dev_base:
+    resource: "@NullDevBaseBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: @AppBundle/Controller/
     type:     annotation
