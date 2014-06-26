@@ -1,0 +1,43 @@
+- hosts: application
+  sudo: yes
+  vars_files:
+    - ../../../app/config/parameters.yml
+  tasks:
+    - name: Installs nginx web server
+      apt: pkg=nginx state=installed update_cache=true
+    - name: Make sure that the ansible_backup directory exsists
+      action: file path=/etc/nginx/ssl/ state=directory            
+    - name: Push ssl test key
+      template: src=nginx/ssl/{{ item }} dest=/etc/nginx/ssl/{{ item }} mode=0640        
+      with_items:
+        - server.crt
+        - server.key
+      notify:
+        - RestartNginx        
+    - name: Push virtual host configurations
+      template: src=nginx/sites-available/{{ item.template }}.conf dest=/etc/nginx/sites-available/{{ item.name }}.conf mode=0640        
+      with_items:
+        - { template: application , name: "{{ parameters.app_domain }}" }
+        - { template: static , name: "{{ parameters.static_domain }}" }
+        - { template: image , name: "{{ parameters.img_domain }}" }
+      notify:
+        - RestartNginx     
+    - name: add symlink in nginx sites-enabled
+      file: src=/etc/nginx/sites-available/{{ item }}.conf dest=/etc/nginx/sites-enabled/{{ item }}.conf state=link
+      with_items:
+        - "{{ parameters.app_domain }}"
+        - "{{ parameters.static_domain }}"
+        - "{{ parameters.img_domain }}"
+      notify:
+        - RestartNginx      
+    - name: Make sure that the www sites directory exists
+      action: file path=/var/www/sites state=directory  mode=0777 owner={{ parameters.deploy_username }}    
+    - name: add symlink for application folder
+      file: src=/vagrant dest={{ parameters.application_base }} state=link 
+      notify:
+        - RestartNginx          
+  handlers:
+    - name: RestartNginx
+      service: name=nginx state=restarted
+
+

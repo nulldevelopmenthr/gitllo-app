@@ -1,0 +1,9 @@
+- hosts: application
+  sudo: yes
+  vars_files:
+    - ../../../app/config/parameters.yml
+  tasks:
+    - name: Install Memcached
+      apt: pkg="{{ item }}" state=installed update_cache=true
+      with_items:
+        - memcached

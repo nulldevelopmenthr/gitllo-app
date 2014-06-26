@@ -1,0 +1,12 @@
+- hosts: servers
+  sudo: yes
+  vars_files:
+    - ../../../app/config/parameters.yml
+  tasks:
+    - name: Install usual packages
+      action: apt name="{{ item }}"
+      with_items:
+        - dstat
+        - joe
+        - git
+        - xz-utils

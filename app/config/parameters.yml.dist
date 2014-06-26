@@ -3,7 +3,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     sf2sk
     database_user:     root
     database_password: ~
     # You should uncomment this if you want use pdo_sqlite
@@ -17,4 +17,25 @@ parameters:
     locale:            en
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            VerySecretKeyThatIWasSuggestedToChange
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: true
+
+    app_name:          sf2sk
+    application_base:  /var/www/sites/sf2sk
+    app_domain:        www.sf2sk.loc
+    static_domain:     static.sf2sk.loc
+    img_domain:        img1.sf2sk.loc
+    img_domains:
+      - img1.sf2sk.loc
+
+
+
+#vagrant stuff
+    deploy_username:   vagrant
+    deploy_password:   vagrant
+
+
+

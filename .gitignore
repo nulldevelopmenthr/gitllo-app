@@ -27,3 +27,6 @@
 /web/app_dev.php
 /web/static/css/
 /web/static/js/
+
+#Ignoring .vagrant folder
+/.vagrant

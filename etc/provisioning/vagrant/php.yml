@@ -1,0 +1,33 @@
+- hosts: application
+  sudo: yes
+  vars_files:
+    - ../../../app/config/parameters.yml
+  tasks:
+    - name: Install PHP stuff
+      apt: pkg="{{ item }}" state=installed update_cache=true
+      with_items:
+        - mysql-client
+        - php5
+        - php5-mysql
+        - php5-mcrypt
+        - php5-intl
+        - php5-curl
+        - php-apc
+        - php5-memcached
+        - php5-gd
+        - php5-fpm
+        - php5-imagick
+    - name: Activates php mods
+      command: php5enmod mcrypt
+      notify:
+        - RestartPhp5fpm
+    - lineinfile: "dest=/etc/php5/fpm/pool.d/www.conf regexp='^;listen.owner =' line='listen.owner = www-data'"
+    - lineinfile: "dest=/etc/php5/fpm/pool.d/www.conf regexp='^;listen.group =' line='listen.group = www-data'"
+    - lineinfile: "dest=/etc/php5/fpm/pool.d/www.conf regexp='^;listen.mode =' line='listen.mode = 0666'"
+    - lineinfile: "dest=/etc/php5/fpm/php.ini regexp='^upload_max_filesize' line='upload_max_filesize = 20M'"
+    - lineinfile: "dest=/etc/php5/fpm/php.ini regexp='^post_max_size' line='post_max_size = 20M'"
+  handlers:
+    - name: RestartPhp5fpm
+      service: name=php5-fpm state=restarted
+
+

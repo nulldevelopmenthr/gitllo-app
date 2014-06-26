@@ -1,0 +1,36 @@
+- include: apt.yml
+- include: usual-packages.yml
+- include: php.yml
+- include: apache.yml
+- include: nginx.yml
+- include: mysql-secure.yml
+- include: openjdk-7-jre.yml
+- include: memcached.yml
+- include: elasticsearch.yml
+- include: phpmyadmin.yml
+
+
+- hosts: application
+  sudo: yes
+  tasks:    
+    # Remove cache folders
+    - file: path="{{ item }}" state=absent
+      with_items:
+        - /dev/shm/appname/cache/
+        - /vagrant/app/cache/
+- hosts: application
+  tasks:
+    # Copy app_dev.php file to web folder
+    - copy: src=../../../etc/dev/web/app_dev.php dest=/vagrant/web/app_dev.php
+    # Run composer install
+    - shell: /usr/bin/php composer.phar install chdir=/vagrant/
+- hosts: application
+  sudo: yes
+  tasks:    
+    # Chmod 777 folders
+    - file: path="{{ item }}" mode=0777  state=directory recurse=yes
+      with_items:
+        - /dev/shm/appname/
+        - /vagrant/app/cache/
+        - /vagrant/app/logs/
+    
