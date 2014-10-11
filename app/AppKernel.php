@@ -21,8 +21,8 @@ class AppKernel extends Kernel
 
             new NullDev\BaseBundle\NullDevBaseBundle(),
 
-
             new FOS\UserBundle\FOSUserBundle(),
+            new NullDev\UserBundle\NullDevUserBundle(),
 
         );
 
