@@ -48,21 +48,24 @@ bind-address		= {{ private_ip }}
 #
 # * Fine Tuning
 #
-key_buffer		= 16M
+key_buffer		= 1024M
 max_allowed_packet	= 16M
 thread_stack		= 192K
 thread_cache_size       = 8
 # This replaces the startup script and checks MyISAM tables if needed
 # the first time they are touched
 myisam-recover         = BACKUP
-#max_connections        = 100
+max_connections        = 100
 #table_cache            = 64
-#thread_concurrency     = 10
+thread_concurrency     = 10
+
+ft_min_word_len=3
+
 #
 # * Query Cache Configuration
 #
-query_cache_limit	= 1M
-query_cache_size        = 16M
+query_cache_limit	= 8M
+query_cache_size        = 128M
 #
 # * Logging and Replication
 #
@@ -77,9 +80,9 @@ query_cache_size        = 16M
 log_error = /var/log/mysql/error.log
 #
 # Here you can see queries with especially long duration
-#log_slow_queries	= /var/log/mysql/mysql-slow.log
-#long_query_time = 2
-#log-queries-not-using-indexes
+log_slow_queries	= /var/log/mysql/mysql-slow.log
+long_query_time = 1
+log-queries-not-using-indexes
 #
 # The following can be used as easy to replay backup logs or for replication.
 # note: if you are setting up a replication slave, see README.Debian about
@@ -101,13 +104,20 @@ max_binlog_size         = 100M
 # Read the manual, too, if you want chroot!
 # chroot = /var/lib/mysql/
 #
+
+innodb_buffer_pool_size = 512M
+
+
 # For generating SSL certificates I recommend the OpenSSL GUI "tinyca".
 #
 # ssl-ca=/etc/mysql/cacert.pem
 # ssl-cert=/etc/mysql/server-cert.pem
 # ssl-key=/etc/mysql/server-key.pem
 
+innodb_buffer_pool_size=512M
+innodb_flush_log_at_trx_commit=2
 
+ft_stopword_file = ""
 
 [mysqldump]
 quick
