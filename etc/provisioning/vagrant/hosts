@@ -1,8 +1,8 @@
 [servers]
-vagrantbox1 ansible_ssh_host=10.0.1.80 private_ip=127.0.01 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+vagrantbox1 ansible_ssh_host=10.0.6.80 private_ip=127.0.01 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 
 [application]
-vagrantbox1 ansible_ssh_host=10.0.1.80 private_ip=127.0.01 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+vagrantbox1 ansible_ssh_host=10.0.6.80 private_ip=127.0.01 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 
 [db]
-vagrantbox1 ansible_ssh_host=10.0.1.80 private_ip=127.0.01 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+vagrantbox1 ansible_ssh_host=10.0.6.80 private_ip=127.0.01 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
