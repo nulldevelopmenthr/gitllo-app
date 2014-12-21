@@ -1,11 +1,14 @@
 - include: apt.yml
 - include: usual-packages.yml
 - include: php.yml
+- include: apache.yml
 - include: nginx.yml
 - include: mysql-secure.yml
 - include: openjdk-7-jre.yml
 - include: memcached.yml
 - include: elasticsearch.yml
+- include: phpmyadmin.yml
+
 
 - hosts: application
   sudo: yes
