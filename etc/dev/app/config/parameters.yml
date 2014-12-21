@@ -3,7 +3,7 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: symfony
+    database_name: gitllo_dev
     database_user: root
     database_password: simplePassword
     mailer_transport: smtp
@@ -12,13 +12,13 @@ parameters:
     mailer_password: null
     locale: en
     secret: ThisTokenIsNotSoSecretChangeIt
-    app_name: sf2sk
-    application_base: /var/www/sites/sf2sk
-    app_domain: www.sf2sk.loc
-    static_domain: static.sf2sk.loc
-    img_domain: img1.sf2sk.loc
+    app_name: gitllo
+    application_base: /var/www/sites/gitllo
+    app_domain: www.gitllo.loc
+    static_domain: static.gitllo.loc
+    img_domain: img1.gitllo.loc
     img_domains:
-        - img1.sf2sk.loc
+        - img1.gitllo.loc
     deploy_username: vagrant
     deploy_password: vagrant
     debug_toolbar: true
