@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
   
   config.vm.provider "virtualbox" do |v|
-    v.name ="symfony2starterkit"
+    v.name ="gitllo-dev"
     v.customize ["modifyvm", :id, "--memory", 1024]
     v.customize ["modifyvm", :id, "--ioapic", "on"]
     v.customize ["modifyvm", :id, "--cpus", "2"]
