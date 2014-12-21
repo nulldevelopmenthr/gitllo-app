@@ -12,7 +12,7 @@ default:
 
     extensions:
         Behat\MinkExtension:
-            base_url: http://www.sf2sk.loc/app_test.php/
+            base_url: http://www.gitllo.loc/app_test.php/
             sessions:
                 default:
                     goutte:
