@@ -1,0 +1,19 @@
+hwi_oauth:
+    firewall_name: main
+    resource_owners: ~
+    fosub:
+        # try 30 times to check if a username is available (foo, foo1, foo2 etc)
+        username_iterations: 30
+
+        # mapping between resource owners (see below) and properties
+        properties:
+            github: githubId
+            google: googleId
+            facebook: facebookId
+            my_custom_provider: customId
+
+    http_client:
+        timeout:       30
+        verify_peer:   true
+        ignore_errors: true
+        max_redirects: 5

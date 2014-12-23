@@ -8,6 +8,7 @@ imports:
     - { resource: main/doctrine.yml }
     - { resource: main/swiftmailer.yml }
     - { resource: bundles/fos_user.yml }
+    - { resource: bundles/hwi_oauth.yml }
 
 
 
